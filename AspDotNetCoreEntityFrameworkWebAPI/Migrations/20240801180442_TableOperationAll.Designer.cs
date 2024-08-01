@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspDotNetCoreEntityFrameworkWebAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240730110857_masterDataCurrency")]
-    partial class masterDataCurrency
+    [Migration("20240801180442_TableOperationAll")]
+    partial class TableOperationAll
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,6 +152,32 @@ namespace AspDotNetCoreEntityFrameworkWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Hindi",
+                            Title = "Hindi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Tamil",
+                            Title = "Tamil"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Punjabi",
+                            Title = "Punjabi"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Urdu",
+                            Title = "Urdu"
+                        });
                 });
 
             modelBuilder.Entity("AspDotNetCoreEntityFrameworkWebAPI.Data.Book", b =>

@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AspDotNetCoreEntityFrameworkWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class tableCreationAll : Migration
+    public partial class TableOperationAll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +20,7 @@ namespace AspDotNetCoreEntityFrameworkWebAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,6 +90,28 @@ namespace AspDotNetCoreEntityFrameworkWebAPI.Migrations
                         principalTable: "currencies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "Description", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Hindi", "Hindi" },
+                    { 2, "Tamil", "Tamil" },
+                    { 3, "Punjabi", "Punjabi" },
+                    { 4, "Urdu", "Urdu" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "currencies",
+                columns: new[] { "Id", "Description", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Indian rupees", "INR" },
+                    { 2, "Dollar", "Dollar" },
+                    { 3, "Euro", "Euro" },
+                    { 4, "Dinar", "Dinar" }
                 });
 
             migrationBuilder.CreateIndex(
